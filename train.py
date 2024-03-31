@@ -113,16 +113,6 @@ def main():
     )
 
     for epoch in range(EPOCHS):
-        for x, y in train_loader:
-            x = x.to(DEVICE)
-            for idx in range(12):
-                bboxes = cellboxes_to_boxes(model(x))
-                bboxes = non_max_suppression(bboxes[idx], iou_threshold=0.5, threshold=0.4, box_format="midpoint")
-                plot_image(x[idx].permute(1,2,0).to("cpu"), bboxes)
-
-            import sys
-            sys.exit()
-
         pred_boxes, target_boxes = get_bboxes(
             train_loader, model, iou_threshold=0.5, threshold=0.4
         )

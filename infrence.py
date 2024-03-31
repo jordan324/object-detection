@@ -24,8 +24,8 @@ NUM_WORKERS = 2
 PIN_MEMORY = True
 LOAD_MODEL = True
 LOAD_MODEL_FILE = "500overfit.pth.tar"
-IMG_DIR = "YOLO/data/images"
-LABEL_DIR = "YOLO/data/labels"
+IMG_DIR = "object-detection/data/images"
+LABEL_DIR = "object-detection/data/labels"
 
 class_names = [
     "aeroplane", "bicycle", "bird", "boat", "bottle",
@@ -66,7 +66,7 @@ def main():
     load_checkpoint(torch.load(LOAD_MODEL_FILE), model, optimizer)
 
     train_dataset = VOCDataset(
-        "YOLO/data/train.csv",
+        "object-detection/data/train.csv",
         transform=transform,
         img_dir=IMG_DIR,
         label_dir=LABEL_DIR,
